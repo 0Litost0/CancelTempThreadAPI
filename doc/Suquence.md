@@ -19,6 +19,8 @@ sequenceDiagram
     M->>+T:start()
     T->>T:压入线程清理函数
     T->>T:启动执行流[ProcessA]
+    Note over M,T: 主动终止临时线程
+    M->>T:cancel()
     T->>T:执行线程清理函数
     T->>-T:线程退出
 ```
