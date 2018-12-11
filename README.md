@@ -75,10 +75,10 @@
     #define USE_SIGNAL 0
 ```
 ***
-<h2 id="四、参考与链接"> 四、参考与链接</h2>
-1. 《UNIX环境高级编程》:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B  
-2. 设置线程的分离属性:http://www.cnblogs.com/lijunamneg/archive/2013/01/25/2877211.html  
-3. android bionic缺失pthread_cancel的解决方法:https://blog.csdn.net/yzx41099296/article/details/7692484
+<h2 id="四、参考与链接"> 四、参考与链接</h2>  
+1. 《UNIX环境高级编程》:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B<br> 
+2. 设置线程的分离属性:http://www.cnblogs.com/lijunamneg/archive/2013/01/25/2877211.html<br> 
+3. android bionic缺失pthread_cancel的解决方法:https://blog.csdn.net/yzx41099296/article/details/7692484<br> 
 
 [《UNIX环境高级编程》]:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B  
 [设置线程的分离属性]: http://www.cnblogs.com/lijunamneg/archive/2013/01/25/2877211.html  
