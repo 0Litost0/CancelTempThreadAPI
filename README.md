@@ -19,7 +19,8 @@
 <h2 id="二、快速上手">二、快速上手</h2>
 
 <h3 id="1.依赖环境">1. 依赖环境</h3>
-&emsp;&emsp;使用相应接口，需要包含以下头文件
+&emsp;&emsp;使用相应接口，需要包含以下头文件  
+
 ```c++
 	#include <CThread.h>
 ```
@@ -56,13 +57,14 @@
 ![主动终止线程](/doc/TerminateTempThread.png "主动终止线程")
 
 &emsp;&emsp;关于cancel的实现，主要存在以下两种方式：  
-1. pthread_cancel()
-&emsp;&emsp;此种方式要求在创建临时线程时，需要[设置线程的分离属性][]。并调用pthread_cancel()来终止线程。
+1. pthread_cancel()  
+&emsp;&emsp;此种方式要求在创建临时线程时，需要[设置线程的分离属性][]。并调用pthread_cancel()来终止线程。  
 2. pthread_kill()  
 &emsp;&emsp;此种要是要求用户在创建临时线程时，必须先为指定信号设置信号处理函数，临时线程在收到相应线程后，终止本线程执行。
 
 *注：关于线程与信号的相关知识参见[《UNIX环境高级编程》][]*
->![《UNIX环境高级编程》](/doc/ThreadAndSignal.png "——《UNIX环境高级编程》")
+>![《UNIX环境高级编程》](/doc/ThreadAndSignal.png "——《UNIX环境高级编程》")  
+
 &emsp;&emsp;此外，在取消临时线程时，我们还不得不考虑资源回收的问题，具体的情境如下图所示:
 ![主动终止线程](/doc/MemoryLeak.png "主动终止线程")  
 &emsp;&emsp;倘若我们在指定的执行流ProcessaA中申请了堆栈、互斥锁、信号量等资源，那么在临时线程被意外终止时，会导致相应的资源没有释放(即使我们在线程退出前执行了线程清理函数)，从而造成内存泄漏。这也是为什么在安卓中没有实现[pthread_cancel()的原因][android bionic缺失pthread_cancel的解决方法]。
@@ -75,9 +77,7 @@
 ***
 <h2 id="四、参考与链接"> 四、参考与链接</h2>
 1. 《UNIX环境高级编程》:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B  
-
 2. 设置线程的分离属性:http://www.cnblogs.com/lijunamneg/archive/2013/01/25/2877211.html  
-
 3. android bionic缺失pthread_cancel的解决方法:https://blog.csdn.net/yzx41099296/article/details/7692484
 
 [《UNIX环境高级编程》]:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B  
