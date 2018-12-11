@@ -11,7 +11,8 @@
 * [四、参考与链接](#四、参考与链接)
 <h1 id="CancelTempThreadAPI">CancelTempThreadAPI</h1>
 <h2 id="一、简介">一、简介</h2>
-&emsp;&emsp;Provide a set of API (Packaged into classes using C++) :could create and cancel the tempory thread。
+&emsp;&emsp;Provide a set of API (Packaged into classes using C++) :could create and cancel the tempory thread。  
+
 &emsp;&emsp;`在实际工作过程中，有时需要我们对一些临时性的工作进行处理，传统的处理方式可能是：在一个工作线程中不断轮训相应时间标志，置位则执行，反之则取消。但是对于一些连贯性动作，或是在调用第三方接口时，可能无法适时终止相应执行流。为了解决以上问题，该仓库封装了一个C++类，通过调用相关对象，可以创建或是取消一个临时线程。`  
 
 ***
@@ -63,7 +64,7 @@
 *注：关于线程与信号的相关知识参见[《UNIX环境高级编程》][]*
 >![《UNIX环境高级编程》](/doc/ThreadAndSignal.png "——《UNIX环境高级编程》")
 &emsp;&emsp;此外，在取消临时线程时，我们还不得不考虑资源回收的问题，具体的情境如下图所示:
-![主动终止线程](/doc/MemoryLeak.png "主动终止线程")
+![主动终止线程](/doc/MemoryLeak.png "主动终止线程")  
 &emsp;&emsp;倘若我们在指定的执行流ProcessaA中申请了堆栈、互斥锁、信号量等资源，那么在临时线程被意外终止时，会导致相应的资源没有释放(即使我们在线程退出前执行了线程清理函数)，从而造成内存泄漏。这也是为什么在安卓中没有实现[pthread_cancel()的原因][android bionic缺失pthread_cancel的解决方法]。
 
 *注：该接口包含上述两种实现。通过`USE_SIGNAL`宏来决定具体使用何种方式*
@@ -73,12 +74,14 @@
 ```
 ***
 <h2 id="四、参考与链接"> 四、参考与链接</h2>
-1. 《UNIX环境高级编程》:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B
-2. 设置线程的分离属性:http://www.cnblogs.com/lijunamneg/archive/2013/01/25/2877211.html
+1. 《UNIX环境高级编程》:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B  
+
+2. 设置线程的分离属性:http://www.cnblogs.com/lijunamneg/archive/2013/01/25/2877211.html  
+
 3. android bionic缺失pthread_cancel的解决方法:https://blog.csdn.net/yzx41099296/article/details/7692484
 
-[《UNIX环境高级编程》]:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B
-[设置线程的分离属性]: http://www.cnblogs.com/lijunamneg/archive/2013/01/25/2877211.html
+[《UNIX环境高级编程》]:https://zh.wikipedia.org/wiki/UNIX%E7%92%B0%E5%A2%83%E9%AB%98%E7%B4%9A%E7%B7%A8%E7%A8%8B  
+[设置线程的分离属性]: http://www.cnblogs.com/lijunamneg/archive/2013/01/25/2877211.html  
 [android bionic缺失pthread_cancel的解决方法]:https://blog.csdn.net/yzx41099296/article/details/7692484
 
 
